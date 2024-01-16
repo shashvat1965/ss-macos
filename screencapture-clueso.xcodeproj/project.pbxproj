@@ -20,6 +20,7 @@
 		AEF772BA2B56DCFF0093CB29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AEF772BD2B56DCFF0093CB29 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AEF772BF2B56DCFF0093CB29 /* screencapture_clueso.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = screencapture_clueso.entitlements; sourceTree = "<group>"; };
+		AEF772C52B56EC520093CB29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +53,7 @@
 		AEF772B52B56DCFE0093CB29 /* screencapture-clueso */ = {
 			isa = PBXGroup;
 			children = (
+				AEF772C52B56EC520093CB29 /* Info.plist */,
 				AEF772B62B56DCFE0093CB29 /* screencapture_cluesoApp.swift */,
 				AEF772B82B56DCFE0093CB29 /* ContentView.swift */,
 				AEF772BA2B56DCFF0093CB29 /* Assets.xcassets */,
@@ -279,11 +281,13 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "screencapture-clueso/Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shashvat.screencapture-clueso";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -306,11 +310,13 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "screencapture-clueso/Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shashvat.screencapture-clueso";
 				PRODUCT_NAME = "$(TARGET_NAME)";
