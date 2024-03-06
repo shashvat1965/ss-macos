@@ -6,42 +6,60 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct ContentView: View {
-    @State var image = NSImage();
-    
+    @State var videoURL: URL? = nil;
+    @State var task: Process? = nil;
+    @State var isRecording: Bool = false;
     var body: some View {
         VStack {
-            Button("Screen Shot"){
-                if screenshotWindowAndSuccess() {
-                    image = getImageFromPasteboard();
+            Button("Screen Record"){
+                if(!isRecording){
+                    screenshotWindowAndSuccess();
                 }
             }
             .padding()
-            Image(nsImage: image)
-                .padding()
+            if isRecording {
+                Button("Stop Recording"){
+                    stopRecording();
+                }
+            }
+            if (!isRecording && videoURL != nil) {
+                        VideoPlayer(player: AVPlayer(url: videoURL!))
+                    .frame(width: 600, height: 300)
+                    } else {
+                        Text("Video not found")
+                    }
         }
         .padding()
     }
     
 
-    func screenshotWindowAndSuccess() -> Bool {
-        let task = Process();
-        task.launchPath = "/usr/sbin/screencapture";
-        task.arguments = ["-vIu"];
-        task.launch();
-        task.waitUntilExit();
-        let status = task.terminationStatus;
-        return status == 0;
+    func screenshotWindowAndSuccess() -> Void {
+        task = Process();
+        task!.launchPath = "/usr/sbin/screencapture";
+        
+        let fileManager = FileManager.default
+        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return;
+        }
+        
+        let video = documentsURL.appendingPathComponent("screencapture.mov");
+        task!.arguments = ["-vuk", video.absoluteString];
+        videoURL = video.absoluteURL;
+        print(videoURL!);
+        task!.launch();
+        print("\(task!.processIdentifier)");
+        isRecording = true;
     }
     
-    func getImageFromPasteboard() -> NSImage {
-        let pasteboard = NSPasteboard.general;
-        guard pasteboard.canReadItem(withDataConformingToTypes:
-                                        NSImage.imageTypes) else { return NSImage(); }
-        guard let image = NSImage(pasteboard: pasteboard) else { return
-            NSImage() };
-        return image;
+    func stopRecording() -> Void {
+        let stopTask = Process()
+            stopTask.launchPath = "/usr/bin/kill"
+        stopTask.arguments = ["-INT", "\(task!.processIdentifier)"]
+            stopTask.launch()
+        isRecording = false
     }
 }
 
